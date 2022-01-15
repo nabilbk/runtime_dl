@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <dlfcn.h>
 
+typedef int (*opfunc)(int);
+typedef void (*func2)();
+
 int main(int argc, char** argv)
 {
     if(argc < 3)
@@ -22,9 +25,6 @@ int main(int argc, char** argv)
     } else {
         printf("dlopen OK\n");
     }
-
-    typedef int (*opfunc)(int);
-    typedef void (*func2)();
 
     opfunc f1 = (opfunc)dlsym(handler, "do_operation");
     if(f1 == NULL)
