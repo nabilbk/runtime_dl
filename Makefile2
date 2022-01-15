@@ -1,0 +1,18 @@
+
+CC = g++
+CFLAGS = -Wall -g -std=c++11
+
+# BINS=mylib1.so mylib2.so test.elf
+BINS=mylib1.so mylib2.so test.elf
+
+all: $(BINS)
+
+%.so: %.cpp
+	$(CC) $(CFLAGS) -fPIC -shared -o $@ $^
+
+%.elf: %.cpp
+	$(CC) $(CFLAGS) -o $@ $^
+
+clean:
+	rm $(BINS)
+	rm -r *.dSYM
